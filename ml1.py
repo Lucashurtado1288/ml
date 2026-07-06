@@ -1,3 +1,6 @@
+############ Machine Learning (K-Nearest Neighbors - KNN) to recognize handwritten digits ##############################
+
+
 from sklearn.datasets import load_digits
 
 import pandas as pd
@@ -13,10 +16,12 @@ print(digits.data.shape)    # 1794 rows(sample) and 64 columns(features)
 
 print(digits.target[:2])    # each row contains: 64 features describing a target 0 [0,1], second row: 64 features describing target 1 [0,1]
 
-print(digits.target.shape)      # only one column (1794,0)
+print(digits.target.shape)      # only one column (number of samples, )
 
 import matplotlib.pyplot as plt
 
+
+################################## DISPLAYING IMAGES ##################################
 figure, axes = plt.subplots(nrows=4, ncols=6, figsize=(6,4))
 
     # zip() combines three iterables together:
@@ -39,6 +44,12 @@ plt.tight_layout()                                                      # automa
 
 #plt.show()                                                              # tells Matplotlib to display the figure window containing all the plots
 
+
+
+
+################################## TRAINING AND TESTING ##################################
+
+
 # Split the dataset into two parts: training model and testing model 
     # does it in random fashion but can be changed to not be random 
     # splits dataset in to 75% training and 25% Testing
@@ -54,6 +65,9 @@ print(target_train.shape)       # (1347,0)
 print(data_test.shape)          # 450/1797 = 25% which is why the test output is 450 records
 print(target_test.shape)        # (450,0)
 
+
+
+
 # Training of the model, using the kneighborsclassifier estimator 
 from sklearn.neighbors import KNeighborsClassifier
 
@@ -65,6 +79,7 @@ predicted = knn.predict(X=data_test)        # Predict what the y is going to be
 
 expected = target_test                      # changing name so it is easier to understand that target is the expected 
 
+# COMPARING PREDICTIONS
 # Printing out the 1st 20 elements of predicited and expected
 print(predicted[:20])       # from the result, did pretty good besides the second to last item 5 
 print(expected[:20])
